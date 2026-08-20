@@ -1,63 +1,66 @@
-# 1. Two Sum ![Easy](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
+# 1. Two Sum
 
-[![LeetCode](https://img.shields.io/badge/LeetCode-Problem_Link-blue?logo=leetcode)](https://leetcode.com/problems/two-sum/description/)
-![Tags](https://img.shields.io/badge/Tags-Array%20%7C%20Hash%20Table-blue)
+![Difficulty: Easy](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
+![Language: Java](https://img.shields.io/badge/Language-Java-orange)
+![Platform: LeetCode](https://img.shields.io/badge/Platform-LeetCode-blue)
+
+[Problem Link](https://leetcode.com/problems/two-sum/description/)
+
+---
 
 ## Problem / Task Description
 
-Given an array of integers `nums` and an integer `target`, return *indices of the two numbers such that they add up to `target`*.
+Given an array of integers `nums` and an integer `target`, return the *indices of the two numbers such that they add up to `target`*.
 
 You may assume that each input would have **exactly one solution**, and you may not use the *same* element twice.
 
 You can return the answer in any order.
 
-### Constraints:
-- $2 \le \text{nums.length} \le 10^4$
-- $-10^9 \le \text{nums[i]} \le 10^9$
-- $-10^9 \le \text{target} \le 10^9$
-- **Only one valid answer exists.**
+### Constraints
+* $2 \le \text{nums.length} \le 10^4$
+* $-10^9 \le \text{nums[i]} \le 10^9$
+* $-10^9 \le \text{target} \le 10^9$
+* **Only one valid answer exists.**
 
 ---
 
 ## Approach & Intuition
 
-### Brute Force Search
-1. **Intuition**: The simplest approach is to test every possible pair of numbers in the array to see if their sum matches the given `target`.
-2. **Algorithm**:
-   - Use two nested loops to check all distinct pairs $(i, j)$ where $j > i$.
-   - The outer loop selects the first element `nums[i]`.
-   - The inner loop checks every subsequent element `nums[j]`.
-   - If `nums[i] + nums[j] == target`, the condition is met, and we return `[i, j]`.
+The provided solution uses a **Brute Force** approach:
 
-> **Note on Optimization**: While the brute force approach requires no extra memory, it can be optimized from $\mathcal{O}(N^2)$ to $\mathcal{O}(N)$ time complexity by using a **Hash Table** to store each number's index as we iterate, allowing $\mathcal{O}(1)$ average lookups for the complement (`target - current_val`).
+1. **Outer Loop**: Iterate through each element in the array with index `i` from `0` to `nums.length - 1`.
+2. **Inner Loop**: Iterate through all subsequent elements with index `j` from `i + 1` to `nums.length - 1`.
+3. **Check Sum**: For each pair `(i, j)`, test if `nums[i] + nums[j] == target`.
+4. **Return Result**: Once a matching pair is found, immediately return their indices `new int[]{i, j}`.
+5. If no pair is found (though guaranteed by constraints to exist), return an empty array.
+
+> **Note**: While an optimal $O(N)$ solution can be achieved using a **Hash Table**, this brute force approach evaluates every unique pair of elements directly without requiring extra memory overhead.
 
 ---
 
 ## Complexity Analysis
 
-- **Time Complexity**: $\mathcal{O}(N^2)$
-  - In the worst case, we compare every pair of elements. For an array of size $N$, the total number of comparisons is $\frac{N(N - 1)}{2}$.
-- **Space Complexity**: $\mathcal{O}(1)$
-  - The algorithm operates in-place without using extra dynamic memory or data structures.
+- **Time Complexity:** $\mathcal{O}(N^2)$
+  - In the worst case, the algorithm compares every pair of numbers. The inner loop executes $\frac{N(N-1)}{2}$ times, leading to quadratic time complexity relative to the array length $N$.
+  
+- **Space Complexity:** $\mathcal{O}(1)$
+  - No additional data structures are used. Memory consumption remains constant regardless of the input size.
 
 ---
 
 ## Solution Code
 
-```python
-class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
-        """
-        Finds indices of the two numbers such that they add up to target.
-
-        :param nums: List[int] - Array of integers
-        :param target: int - Target sum
-        :return: List[int] - Indices of the two numbers
-        """
-        n = len(nums)
-        for i in range(n):
-            for j in range(i + 1, n):
-                if nums[i] + nums[j] == target:
-                    return [i, j]
-        return []
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{};
+    }
+}
 ```

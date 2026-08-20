@@ -1,5 +1,5 @@
 {
-  "job_id": "JOB-EXT-1787222855-3220",
+  "job_id": "JOB-EXT-1787224272-2093",
   "platform": "leetcode",
   "title": "1. Two Sum",
   "difficulty": "Easy",
@@ -8,6 +8,6 @@
     "Array",
     "Hash Table"
   ],
-  "language": "python",
-  "created_at": "2026-08-20T10:48:10.585865+00:00"
+  "language": "java",
+  "created_at": "2026-08-20T11:11:21.609022+00:00"
 }
