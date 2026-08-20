@@ -1,0 +1,13 @@
+{
+  "job_id": "JOB-EXT-1787222855-3220",
+  "platform": "leetcode",
+  "title": "1. Two Sum",
+  "difficulty": "Easy",
+  "url": "https://leetcode.com/problems/two-sum/description/",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "language": "python",
+  "created_at": "2026-08-20T10:48:10.585865+00:00"
+}
