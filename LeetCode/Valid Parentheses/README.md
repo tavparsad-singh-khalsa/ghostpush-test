@@ -1,7 +1,10 @@
 # Valid Parentheses
 
-![Difficulty: Easy](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
-[![LeetCode](https://img.shields.io/badge/LeetCode-Valid_Parentheses-FFA116?style=flat&logo=leetcode)](https://leetcode.com/problems/valid-parentheses/description/)
+![Easy](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
+![LeetCode](https://img.shields.io/badge/Platform-LeetCode-orange)
+![Language](https://img.shields.io/badge/Language-Java-blue)
+
+[Problem Link](https://leetcode.com/problems/valid-parentheses/description/)
 
 ## Problem / Task Description
 
@@ -13,35 +16,36 @@ An input string is valid if:
 3. Every close bracket has a corresponding open bracket of the same type.
 
 ### Constraints
-- $1 \le s.length \le 10^4$
-- `s` consists of parentheses only: `'()[]{}'`.
+* $1 \le \text{s.length} \le 10^4$
+* `s` consists of parentheses only `'()[]{}'`.
 
 ---
 
 ## Approach & Intuition
 
-The problem requires us to verify if open brackets are closed in the correct order. This **Last-In, First-Out (LIFO)** property makes a **Stack** data structure the ideal choice.
+The problem requires validating bracket sequences in a **Last-In, First-Out (LIFO)** order. The most recently encountered opening bracket must be the first one to be closed by a matching closing bracket. This LIFO property makes a **Stack** the ideal data structure for this task.
 
-### Key Strategy
-1. **Traverse the String**: Process the input string character by character.
-2. **Push Opening Brackets**: Whenever an opening bracket (`'('`, `'['`, `'{'`) is encountered, push it onto the stack.
-3. **Validate Closing Brackets**:
-   - If a closing bracket (`')'`, `']'`, `'}'`) is encountered:
-     - First, check if the stack is empty. If it is, there is no corresponding opening bracket, making the string invalid immediately.
-     - Pop the top character from the stack and verify if it matches the expected opening pair for the current closing bracket.
-     - If the pair does not match, return `false`.
-4. **Final Check**: After processing all characters, if the stack is empty, all opening brackets were properly closed and matched. If the stack still contains elements, some opening brackets were left unclosed, making the string invalid.
+### Algorithm Strategy:
+1. **Initialize Stack**: Create a stack to keep track of expected opening brackets.
+2. **Iterate Characters**: Traverse each character `ch` in string `s`:
+   - **Opening Brackets (`(`, `[`, `{`)**: Push `ch` onto the stack.
+   - **Closing Brackets (`)`, `]`, `}`)**:
+     - Check if the stack is empty. If it is, return `false` because there is no matching opening bracket.
+     - Pop the top character from the stack and verify if it matches the corresponding opening bracket for `ch`. If it doesn't match, return `false`.
+3. **Final Check**: After processing the entire string, check if the stack is empty.
+   - If the stack is empty, all opening brackets were properly closed $\rightarrow$ Return `true`.
+   - If the stack is not empty, some opening brackets remain unclosed $\rightarrow$ Return `false`.
 
 ---
 
 ## Complexity Analysis
 
-- **Time Complexity:** $\mathcal{O}(N)$
-  - We traverse the string of length $N$ exactly once.
-  - Push and pop operations on the stack run in constant time, $\mathcal{O}(1)$.
+- **Time Complexity:** $\mathcal{O}(n)$
+  - We traverse the input string of length $n$ exactly once.
+  - Push and pop operations on the stack take $\mathcal{O}(1)$ constant time.
 
-- **Space Complexity:** $\mathcal{O}(N)$
-  - In the worst-case scenario (e.g., an input string consisting entirely of opening brackets like `"((((("`), the stack will hold up to $N$ characters.
+- **Space Complexity:** $\mathcal{O}(n)$
+  - In the worst-case scenario (e.g., input string containing only opening brackets like `"((((("`), the stack will store up to $n$ characters.
 
 ---
 

@@ -1,5 +1,5 @@
 {
-  "job_id": "JOB-EXT-1788527319-5623",
+  "job_id": "JOB-EXT-1788530199-1752",
   "platform": "leetcode",
   "title": "Valid Parentheses",
   "difficulty": "Easy",
@@ -10,5 +10,5 @@
     "Bracket Sequences"
   ],
   "language": "java",
-  "created_at": "2026-09-04T13:10:30.153444+00:00"
+  "created_at": "2026-09-04T13:56:51.648072+00:00"
 }
